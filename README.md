@@ -15,7 +15,7 @@ workspaceFolder/
 ## Step 1 : Clone the repository into the location of your **West Workspace** for the new **Zephyr Project**
 ```shell
 mkdir <newZephyrProjectWorkspaceName>
-git clone https://github.com/Strooom/zephyrWorkspace newZephyrProjectWorkspaceName
+git clone https://github.com/Strooom/zephyrWorkspace <newZephyrProjectWorkspaceName>
 ```
 
 ## Step 2 : Setup the **Virtual Environment** for Python
