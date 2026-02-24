@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "West Workspace Root"
+		},
+		{
+			"path": "app",
+			"name": "Zephyr Project"
+		}
+	],
+	"settings": {}
+}
