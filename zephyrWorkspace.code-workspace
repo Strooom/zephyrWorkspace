@@ -9,5 +9,14 @@
 			"name": "Zephyr Project"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"terminal.integrated.cwd": "${workspaceFolder:West Workspace Root}",
+		"terminal.integrated.profiles.windows": {
+			"Zephyr": {
+				"source": "PowerShell",
+				"args": ["-NoExit", "-Command", ". .\\zinit.ps1; . 'C:\\Users\\pasca\\.zinstaller\\.venv\\Scripts\\Activate.ps1'; Set-Location .\\app"]
+			}
+		},
+		"terminal.integrated.defaultProfile.windows": "Zephyr"
+	}
 }
