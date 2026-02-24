@@ -22,8 +22,9 @@ git clone https://github.com/Strooom/zephyrWorkspace <newZephyrProjectWorkspaceN
 ```shell
 cd <newZephyrProjectWorkspaceName>
 python -m venv .venv
-source .venv\Scripts\Activate.ps1
-pip install --upgrade pip
+.venv\Scripts\Activate.ps1 (Windows) source .venv\Scripts\Activate.ps1 (linux)
+python.exe -m pip install --upgrade pip (Windows) pip install --upgrade pip (linux)
+pip install jsonschema
 pip install west
 ```
 
@@ -38,9 +39,17 @@ west init -l app
 ```
 
 ## Step 5 : West Update
-A number of files which can easily be regenerated or downloaded, are NOT included in the repository, in order to keep it small. Once on your local disk, you let West download all that is needed by running 
+This will take a while and download ~2.4 Gbyte in folders /zephyr and /modules.
 
+It will **not** go in the repository. It can always be deleted and regenerated later. 
 ```shell
 west update
 ```
 
+## Optional
+Windows Security (Defender) may slow down the build, so you may want to add an exclusion :
+* Open Windows Security → Virus & threat protection
+* Under "Virus & threat protection settings", click Manage settings
+* Scroll to Exclusions → click Add or remove exclusions
+* Click + Add an exclusion → choose Folder
+* Navigate to and select your app folder
