@@ -83,4 +83,5 @@ workspaceFolder/
 ```
 
 
-
+# Notes
+* the west.yml in the zephyrProject repo has `revision: main`, which will install the latest version. You may want to fix this to a certain release.
