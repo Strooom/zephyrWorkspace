@@ -10,6 +10,14 @@
 		}
 	],
 	"settings": {
+		// Hush CMake
+		"cmake.configureOnOpen": false,
+		// IntelliSense
+		"C_Cpp.default.compilerPath": "${userHome}/Documents/Projects/Zephyr/SDKs/ZephyrSdkArm/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
+		"C_Cpp.default.compileCommands": "${workspaceFolder}/app/build/compile_commands.json",
+		// File Associations
+		"files.associations": {},
+		// Terminal profile activating virtual environment
 		"terminal.integrated.cwd": "${workspaceFolder:West Workspace Root}",
 		"terminal.integrated.profiles.windows": {
 			"Zephyr": {
