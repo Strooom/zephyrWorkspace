@@ -61,7 +61,7 @@ west update
 ```
 
 ## Step 5 : Optional : Update the virtual Python environment and its tools
-Open a Terminal, which should automatically activate the shared .venv
+Open a Terminal, activate the virtual environment.
 
 Then run the following commands for updating all tools
 ```shell
