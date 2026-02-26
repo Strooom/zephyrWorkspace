@@ -13,16 +13,31 @@ workspaceFolder/
 ├── .gitignore
 ├── CLAUDE.md
 ├── README.md
-├── zephyrWorkspace.code-workspace
-└── zinit.ps1
+└── zephyrWorkspace.code-workspace
 ```
 
 ## Prerequisites
-* [Zephyr Workbench](https://github.com/Ac6Embedded/vscode-zephyr-workbench) VSCode extension installed — provides the shared Python environment and host tools under `~/.zinstaller`
-* create a new zephyrProject repository from the https://github.com/Strooom/zephyrProject template. Note : this template has `develop` as default branch
+* I assume you are on Linux Ubuntu or on Windows WSL Ubuntu. I tried to make this work for Windows, but once you touch more advanced things, Windows is no longer supported.
+* So set up a Linux or WSL and follow the first two steps of Zephyr's Getting Started Guide :
+  * Install dependencies : this is installing a number of Linux tools (Python, CMake, DTC and others) needed by Zephyr. Let those tools install in their preferred locations.
+  * I created a folder `~/projects/zephyr` which will hold all my Zephyr development projects.
+  * Set up a `Virtual Environment` for Python. Zephyr is using a lot of Python and requires a very specific setup for Python. It's more robust to have all this together in a separate folder, and that is what a virtual environment does. I have created my `venv` in `~/projects/zephyr/venv`, so it stays close to my projects.
+  * Whenever you are using a terminal, it needs to have that virtual environment **activated**. To make this easier, I created an alias in my .bashrc : `alias activate='source ~/projects/zephyr/venv/bin/activate'`
+
+## Template or Project
+In the next steps you'll first create a `West Workspace` which in turn contains your `new zephyrProject`. 
+```
+West Workspace/
+└── zephyrProject
+```
+
+Over time you will configure the zephyr project with specific stuff beyond the template. So you probably want to first create a new repository (eg myZephyrProject) from the template (zephyrProject), and use this in Step 2. 
+
+Note : this template has `develop` as default branch
 
 ## Step 1 : Clone the repository into the location of your **West Workspace** for the new **Zephyr Project**
 ```shell
+activate
 mkdir <newZephyrProjectWorkspaceName>
 git clone https://github.com/Strooom/zephyrWorkspace <newZephyrProjectWorkspaceName>
 ```
@@ -45,7 +60,7 @@ It will **not** go in the repository. It can always be deleted and regenerated l
 west update
 ```
 
-## Step 5 : Optional : Update the shared Python environment and its tools
+## Step 5 : Optional : Update the virtual Python environment and its tools
 Open a Terminal, which should automatically activate the shared .venv
 
 Then run the following commands for updating all tools
@@ -78,8 +93,7 @@ workspaceFolder/
 ├── .gitignore
 ├── CLAUDE.md
 ├── README.md
-├── zephyrWorkspace.code-workspace
-└── zinit.ps1
+└── zephyrWorkspace.code-workspace
 ```
 
 
