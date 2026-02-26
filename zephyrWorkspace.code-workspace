@@ -10,6 +10,9 @@
 		}
 	],
 	"settings": {
+		// Git - explicitly register the nested app repo, hide zephyr SDK repo
+		"git.repositoryScanMaxDepth": 1,
+		"git.ignoredRepositories": ["zephyr"],
 		// Hush CMake
 		"cmake.configureOnOpen": false,
 		// IntelliSense

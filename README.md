@@ -42,7 +42,10 @@ mkdir <newZephyrProjectWorkspaceName>
 git clone https://github.com/Strooom/zephyrWorkspace <newZephyrProjectWorkspaceName>
 ```
 
+Once cloned, I usually open the VSCode workspace defined in this repository.
+
 ## Step 2 : Clone the repository for the **Zephyr Project**
+From the new workspace folder...
 ```shell
 git clone https://github.com/Strooom/<zephyrProjectName> -b develop app
 ```
@@ -60,14 +63,12 @@ It will **not** go in the repository. It can always be deleted and regenerated l
 west update
 ```
 
-## Step 5 : Optional : Update the virtual Python environment and its tools
-Open a Terminal, activate the virtual environment.
+## Step 5 : Update the virtual Python environment with extra tools needed by Zephyr
+Open a Terminal, in the workspace folder, activate the virtual environment.
 
-Then run the following commands for updating all tools
+Then run the following command for updating all tools
 ```shell
-python -m pip install --upgrade pip
-pip install --upgrade west jsonschema
-pip install --upgrade -r zephyr\scripts\requirements.txt
+pip install --upgrade -r zephyr/scripts/requirements.txt
 ```
 
 # Result
@@ -96,6 +97,36 @@ workspaceFolder/
 └── zephyrWorkspace.code-workspace
 ```
 
+## SDKs
+One more thing Zephyr needs is the so-called SDK : it is basically the collection of cross-compiler, assembler, linker, etc. All these tools are specific for the MCU architecture you are targetting, eg STM32 (= ARM), ESP32 (= xtensa). 
+If you don't care about diskspace, you can install them all, but I tend to install only the ones I am going to use. 
+In order to keep my Zephyr development things together, I decided to install the SDK in `~/projects/zephyr/sdks`, that's not the default, so it requires the -b option on the command.
+From the workspace directory, run
+```shell
+west sdk install -b ~/projects/zephyr/sdks -i
+# -b <destinationParentDirectory>
+# -i interactive : choose the toolchain sets you want
+```
+I chose `Install host tools` and `Register Zephyr SDK CMake package` but I don't understand yet what this does...
+
 
 # Notes
 * the `west.yml` in the zephyrProject repo has `revision: main`, which will install the latest version. You may want to fix this to a certain release.
+
+## Testing
+### Local build
+Now is the time to try if we can build the minimal Hello World app in `src/main.c`. As we are on Linux, we can simply build for a board called `native_sim`, which will build a binary that runs on our host computer. This is possible because the application does not use any real hardware devices. From inside the **app** folder, run
+```shell
+west build -b native_sim
+```
+The build process will create a `build` folder. The resulting binary can be found in `build/zephyr/zephyr.exe`. 
+You can run it :
+```shell
+build/zephyr/zephyr.exe
+```
+and it will output Hello World ! every second. Use CTRL+C to stop it.
+
+### Cloud build
+The zephyrProject (template) repository has a CI/CD workflow set up, so when you push commits, it will run the whole build process in a github action as well. To try it, make some (trivial) changes to src/main.c and commit them. Then take a look at github.com under the Actions to see if the workflow runs and succeeds.
+
+
